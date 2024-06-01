@@ -1,3 +1,3 @@
 class APPENV {
-  static const baseURl = "http://apptest.dokandemo.com/wp-json/wp/v2/";
+  static const baseURl = "https://apptest.dokandemo.com/wp-json/";
 }
