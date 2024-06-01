@@ -1,3 +1,4 @@
+import 'package:dokan_demo/utils/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -27,7 +28,12 @@ class _CheckPointState extends State<CheckPoint> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: OnScreenLoaderWidget(),
+        child: TextButton(
+          child: Text("Click"),
+          onPressed: () {
+            showLoader();
+          },
+        ),
       ),
     );
   }
