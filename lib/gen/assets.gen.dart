@@ -81,11 +81,14 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/error.png
+  AssetGenImage get error => const AssetGenImage('assets/images/error.png');
+
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [logo];
+  List<AssetGenImage> get values => [error, logo];
 }
 
 class $AssetsLottieGen {
