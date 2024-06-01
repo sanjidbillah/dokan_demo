@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
 import 'modules/auth/views/sign_in_screen.dart';
+import 'utils/widgets/on_screen_loader_widget.dart';
 
 class CheckPoint extends StatefulWidget {
   const CheckPoint({super.key});
@@ -17,7 +18,7 @@ class _CheckPointState extends State<CheckPoint> {
         Duration(
           seconds: 1,
         ), () {
-      Get.to(SignInScreen());
+      Get.to(() => const SignInScreen());
     });
     super.initState();
   }
@@ -26,7 +27,7 @@ class _CheckPointState extends State<CheckPoint> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: CircularProgressIndicator(),
+        child: OnScreenLoaderWidget(),
       ),
     );
   }
