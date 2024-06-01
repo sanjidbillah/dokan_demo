@@ -19,6 +19,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   shared_preferences: ^2.2.3
   ud_design: ^0.0.9
+  lottie: ^3.1.2
 
 dev_dependencies:
   flutter_test:
@@ -38,6 +39,7 @@ flutter:
     - assets/
     - assets/images/
     - assets/icons/
+    - assets/lottie/
 flutter_native_splash:
       android: true
       ios: true

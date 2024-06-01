@@ -12,16 +12,16 @@ class CheckPoint extends StatefulWidget {
 }
 
 class _CheckPointState extends State<CheckPoint> {
-  @override
-  void initState() {
-    Future.delayed(
-        Duration(
-          seconds: 1,
-        ), () {
-      Get.to(() => const SignInScreen());
-    });
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   Future.delayed(
+  //       Duration(
+  //         seconds: 1,
+  //       ), () {
+  //     Get.to(() => const SignInScreen());
+  //   });
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
