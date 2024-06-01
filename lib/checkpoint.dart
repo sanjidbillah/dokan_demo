@@ -1,4 +1,3 @@
-import 'package:dokan_demo/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
 class CheckPoint extends StatefulWidget {
