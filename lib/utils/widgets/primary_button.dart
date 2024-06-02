@@ -4,7 +4,8 @@ import 'package:get/route_manager.dart';
 
 class PrimaryButton extends StatefulWidget {
   final String title;
-  const PrimaryButton({super.key, required this.title});
+  final void Function()? onTap;
+  const PrimaryButton({super.key, required this.title, this.onTap});
 
   @override
   State<PrimaryButton> createState() => _PrimaryButtonState();
@@ -13,20 +14,23 @@ class PrimaryButton extends StatefulWidget {
 class _PrimaryButtonState extends State<PrimaryButton> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: ThemeController.defaultFieldHeight,
-      decoration: BoxDecoration(
-        color: Get.theme.primaryColor,
-        borderRadius: BorderRadius.circular(
-          ThemeController.defaultFieldRadius,
+    return InkWell(
+      onTap: widget.onTap,
+      child: Container(
+        height: ThemeController.defaultFieldHeight,
+        decoration: BoxDecoration(
+          color: Get.theme.primaryColor,
+          borderRadius: BorderRadius.circular(
+            ThemeController.defaultFieldRadius,
+          ),
         ),
-      ),
-      child: Center(
-        child: Text(
-          widget.title,
-          style: Get.theme.primaryTextTheme.headlineMedium?.copyWith(
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
+        child: Center(
+          child: Text(
+            widget.title,
+            style: Get.theme.primaryTextTheme.headlineMedium?.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
       ),

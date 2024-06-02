@@ -1,5 +1,7 @@
 import 'package:dokan_demo/utils/extensions/responsive_extension.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -10,12 +12,14 @@ class PrimaryTextField extends StatefulWidget {
   final String? suffixIconPath;
   final String? prefixIconPath;
   final String hintText;
+  final String? Function(String?)? validator;
   const PrimaryTextField({
     super.key,
     this.controller,
     this.suffixIconPath,
     this.prefixIconPath,
     required this.hintText,
+    this.validator,
   });
 
   @override
@@ -25,25 +29,29 @@ class PrimaryTextField extends StatefulWidget {
 class _PrimaryTextFieldState extends State<PrimaryTextField> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: ThemeController.defaultFieldHeight,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(
-          ThemeController.defaultFieldRadius,
+    return Stack(
+      children: [
+        Container(
+          height: ThemeController.defaultFieldHeight,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(
+              ThemeController.defaultFieldRadius,
+            ),
+            boxShadow: const [
+              BoxShadow(
+                  color: Color.fromRGBO(57, 90, 184, 0.1),
+                  blurRadius: 4,
+                  offset: Offset(
+                    0,
+                    3,
+                  ))
+            ],
+          ),
         ),
-        boxShadow: const [
-          BoxShadow(
-              color: Color.fromRGBO(57, 90, 184, 0.1),
-              blurRadius: 4,
-              offset: Offset(
-                0,
-                3,
-              ))
-        ],
-      ),
-      child: Center(
-        child: TextFormField(
+        TextFormField(
+          autocorrect: false,
+          validator: widget.validator,
           controller: widget.controller,
           decoration: InputDecoration(
             prefixIcon: widget.prefixIconPath == null
@@ -63,13 +71,13 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
                     fit: BoxFit.fill,
                   ).paddingAll(15),
             border: InputBorder.none,
-            contentPadding: widget.prefixIconPath == null
-                ? const EdgeInsets.only(left: 20)
-                : null,
+            contentPadding: EdgeInsets.symmetric(
+              vertical: 17.5.pt,
+            ),
             hintText: widget.hintText,
           ),
         ),
-      ),
+      ],
     );
   }
 }
