@@ -20,11 +20,12 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   @override
   void dispose() {
     emailController.dispose();
-
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -52,7 +53,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   controller: emailController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter email';
+                      return 'Please enter email!';
+                    } else if (!value.isEmail) {
+                      return 'Please enter valid email!';
                     }
                     return null;
                   },
@@ -60,7 +63,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   hintText: "Email",
                 ).paddingOnly(bottom: 20.pt),
                 PrimaryTextField(
-                  controller: emailController,
+                  controller: passwordController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter password';
@@ -73,7 +76,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const ForgotPassword(),
                 PrimaryButton(
                   onTap: () {
-                    formKey.currentState?.validate();
+                    if (formKey.currentState?.validate() ?? false) {}
                   },
                   title: "Login",
                 ).paddingOnly(bottom: 30.pt),
