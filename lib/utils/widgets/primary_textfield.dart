@@ -29,7 +29,8 @@ class PrimaryTextField extends StatefulWidget {
 }
 
 class _PrimaryTextFieldState extends State<PrimaryTextField> {
-  final ValueNotifier obsecureText = ValueNotifier<bool>(true);
+  late final ValueNotifier obsecureText =
+      ValueNotifier<bool>(widget.obsecureText);
   @override
   Widget build(BuildContext context) {
     return Stack(

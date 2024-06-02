@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
 import 'package:ud_design/ud_design.dart';
 
-import 'checkpoint.dart';
 import 'core/routes/app_pages.dart';
 
 void main() {

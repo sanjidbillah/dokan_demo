@@ -4,6 +4,7 @@ import 'package:dokan_demo/modules/auth/views/sign_up/sign_up_screen.dart';
 import 'package:dokan_demo/modules/root/root_screen.dart';
 import 'package:get/route_manager.dart';
 
+import '../../modules/root/bindings/root_bindings.dart';
 import 'app_routes.dart';
 
 final List<GetPage> pages = [
@@ -22,5 +23,6 @@ final List<GetPage> pages = [
   GetPage(
     name: Routes.root,
     page: () => const RootScreen(),
+    binding: RootBindings(),
   ),
 ];

@@ -1,3 +1,4 @@
+import 'package:dokan_demo/core/services/dio_service.dart';
 import 'package:dokan_demo/gen/assets.gen.dart';
 import 'package:dokan_demo/modules/auth/controllers/auth_controller.dart';
 import 'package:dokan_demo/modules/auth/data/models/auth_payload.dart';
@@ -56,9 +57,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   controller: emailController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter email!';
+                      return 'Please enter email.';
                     } else if (!value.isEmail) {
-                      return 'Please enter valid email!';
+                      return 'Please enter valid email.';
                     }
                     return null;
                   },
@@ -69,7 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   controller: passwordController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter password';
+                      return 'Please enter password.';
                     }
                     return null;
                   },
@@ -79,12 +80,14 @@ class _SignInScreenState extends State<SignInScreen> {
                 ).paddingOnly(bottom: 15.pt),
                 const ForgotPassword(),
                 PrimaryButton(
-                  onTap: () {
+                  onTap: () async {
                     if (formKey.currentState?.validate() ?? false) {
-                      authController.signIn(AuthPayload(
-                        username: emailController.text,
-                        password: passwordController.text,
-                      ));
+                      authController.signIn(
+                        AuthPayload(
+                          username: emailController.text,
+                          password: passwordController.text,
+                        ),
+                      );
                     }
                   },
                   title: "Login",

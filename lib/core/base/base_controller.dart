@@ -61,7 +61,6 @@ abstract class BaseController extends GetxController {
       hideLoader();
       Future.delayed(const Duration(seconds: 1), () {
         if (Get.isDialogOpen ?? false || Get.isOverlaysOpen) {
-          print("❗️ deep");
           _hideLoaderDeeply();
         }
         return;

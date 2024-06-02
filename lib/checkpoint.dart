@@ -1,8 +1,15 @@
 import 'package:dokan_demo/gen/assets.gen.dart';
+import 'package:dokan_demo/modules/auth/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'modules/auth/views/sign_in/sign_in_screen.dart';
+void runAfterFrame(Function callback) {
+  // Adding a post-frame callback to the widget binding instance
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    // Calling the provided callback at the end of the frame
+    callback();
+  });
+}
 
 class CheckPoint extends StatefulWidget {
   const CheckPoint({super.key});
@@ -12,13 +19,12 @@ class CheckPoint extends StatefulWidget {
 }
 
 class _CheckPointState extends State<CheckPoint> {
+  final AuthController _authController = Get.find<AuthController>();
+
   @override
   void initState() {
-    Future.delayed(
-        const Duration(
-          seconds: 2,
-        ), () {
-      Get.offAll(() => const SignInScreen());
+    runAfterFrame(() {
+      _authController.checkLoginStatus();
     });
     super.initState();
   }

@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:dokan_demo/core/services/shared_pref_service.dart';
+import 'package:dokan_demo/utils/constants/keys.dart';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../utils/constants/app_env.dart';
 
@@ -55,6 +60,52 @@ class DioService {
         },
       ));
     return _dio!; // Return Dio instance
+  }
+
+  _decodeToken(token) {
+    final splitToken = token.split("."); // Split the token by '.'
+    if (splitToken.length != 3) {
+      throw const FormatException('Invalid token');
+    }
+    try {
+      final payloadBase64 = splitToken[1]; // Payload is always the index 1
+      // Base64 should be multiple of 4. Normalize the payload before decode it
+      final normalizedPayload = base64.normalize(payloadBase64);
+      // Decode payload, the result is a String
+      final payloadString = utf8.decode(base64.decode(normalizedPayload));
+      // Parse the String to a Map<String, dynamic>
+      final decodedPayload = jsonDecode(payloadString);
+
+      // Return the decoded payload
+      return decodedPayload;
+    } catch (error) {
+      throw const FormatException('Invalid payload');
+    }
+  }
+
+  bool isExpired(String token) {
+    final expirationDate = _getExpirationDate(token);
+    if (expirationDate == null) {
+      return false;
+    }
+    // If the current date is after the expiration date, the token is already expired
+    return DateTime.now().isAfter(expirationDate);
+  }
+
+  DateTime? _getDate({required String token, required String claim}) {
+    final decodedToken = _decodeToken(token);
+    final expiration = decodedToken[claim] as int?;
+    if (expiration == null) {
+      return null;
+    }
+    return DateTime.fromMillisecondsSinceEpoch(expiration * 1000);
+  }
+
+  /// Returns token expiration date
+  ///
+  /// Throws [FormatException] if parameter is not a valid JWT token.
+  DateTime? _getExpirationDate(String token) {
+    return _getDate(token: token, claim: 'exp');
   }
 }
 

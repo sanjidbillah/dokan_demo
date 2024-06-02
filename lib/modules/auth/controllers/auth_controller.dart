@@ -1,5 +1,6 @@
 import 'package:dokan_demo/core/base/base_controller.dart';
 import 'package:dokan_demo/core/routes/app_routes.dart';
+import 'package:dokan_demo/core/services/dio_service.dart';
 import 'package:dokan_demo/modules/auth/data/interfaces/auth_interface.dart';
 import 'package:dokan_demo/modules/auth/data/models/auth_payload.dart';
 import 'package:dokan_demo/modules/auth/data/repository/auth_repository.dart';
@@ -51,9 +52,10 @@ class AuthController extends BaseController implements IAuthService {
   @override
   Future<void> signUp(AuthPayload authPayload) async {
     try {
+      showLoader();
       // Call signUp method from AuthRepository with authPayload
       final signUpRes = await _authRepository.signUp(authPayload);
-
+      hideLoader();
       // Check if signup response code is 200 (success)
       if (signUpRes?.code == 200) {
         // If signup is successful, call signIn method
@@ -62,6 +64,7 @@ class AuthController extends BaseController implements IAuthService {
     } catch (e) {
       // Set exception if any error occurs during signup
       setException = e;
+      showErrorMsg();
     }
   }
 
@@ -69,5 +72,21 @@ class AuthController extends BaseController implements IAuthService {
   @override
   Future<void> forget() {
     throw UnimplementedError();
+  }
+
+  Future checkLoginStatus() async {
+    final token =
+        await SharedPreferencesService.instance.getString(ProjectKeys.authKey);
+
+    if (token == null) {
+      Get.offAllNamed(Routes.signIn);
+    } else {
+      final isExpired = DioService.instance.isExpired(token);
+      if (isExpired) {
+        Get.offAllNamed(Routes.signIn);
+      } else {
+        Get.offAllNamed(Routes.root);
+      }
+    }
   }
 }

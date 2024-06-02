@@ -56,6 +56,9 @@ class ThemeController {
     ),
     hintColor: const Color.fromRGBO(164, 169, 175, 1),
     primaryColor: const Color(0xFFF75F55),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      selectedItemColor: Color(0xFFFF679B),
+    ),
     scaffoldBackgroundColor: const Color.fromRGBO(248, 248, 248, 1),
   );
 

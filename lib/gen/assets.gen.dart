@@ -64,6 +64,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/person.svg
   String get person => 'assets/icons/person.svg';
 
+  /// File path: assets/icons/person_nav.svg
+  String get personNav => 'assets/icons/person_nav.svg';
+
+  /// File path: assets/icons/search.svg
+  String get search => 'assets/icons/search.svg';
+
   /// File path: assets/icons/sort.svg
   String get sort => 'assets/icons/sort.svg';
 
@@ -86,6 +92,8 @@ class $AssetsIconsGen {
         notification,
         password,
         person,
+        personNav,
+        search,
         sort
       ];
 }
