@@ -1,21 +1,30 @@
+import 'package:dokan_demo/utils/themes/theme_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
 import 'package:ud_design/ud_design.dart';
 
 import 'checkpoint.dart';
 
 void main() {
-  runApp(const MyApp());
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark),
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
+  final ThemeController _themeController = ThemeController();
   @override
   Widget build(BuildContext context) {
     UdDesign.init(context);
-    return const GetMaterialApp(
-      home: CheckPoint(),
+    return GetMaterialApp(
+      home: const CheckPoint(),
+      theme: _themeController.lightTheme,
+      themeMode: _themeController.themeMode,
     );
   }
 }
