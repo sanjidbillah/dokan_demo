@@ -18,7 +18,7 @@ class _CheckPointState extends State<CheckPoint> {
         const Duration(
           seconds: 2,
         ), () {
-      Get.to(() => const SignInScreen());
+      Get.offAll(() => const SignInScreen());
     });
     super.initState();
   }

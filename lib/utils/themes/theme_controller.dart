@@ -6,6 +6,15 @@ class ThemeController {
   static double defaultPadding = 20.pt;
   static double defaultFieldHeight = 60.pt;
   static double defaultFieldRadius = 10.pt;
+  static final defaultShadow = [
+    const BoxShadow(
+        color: Color.fromRGBO(57, 90, 184, 0.1),
+        blurRadius: 4,
+        offset: Offset(
+          0,
+          3,
+        ))
+  ];
 
   /// The current theme mode of the application.
   ThemeMode themeMode = ThemeMode.light;

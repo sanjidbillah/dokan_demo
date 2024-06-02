@@ -15,6 +15,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/account.svg
   String get account => 'assets/icons/account.svg';
 
+  /// File path: assets/icons/account_input.svg
+  String get accountInput => 'assets/icons/account_input.svg';
+
   /// File path: assets/icons/camera.svg
   String get camera => 'assets/icons/camera.svg';
 
@@ -61,6 +64,7 @@ class $AssetsIconsGen {
   /// List of all assets
   List<dynamic> get values => [
         account,
+        accountInput,
         camera,
         cart,
         category,
