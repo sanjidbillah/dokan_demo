@@ -1,4 +1,6 @@
 import 'package:dokan_demo/gen/assets.gen.dart';
+import 'package:dokan_demo/modules/auth/controllers/auth_controller.dart';
+import 'package:dokan_demo/modules/auth/data/models/auth_payload.dart';
 import 'package:dokan_demo/utils/extensions/padding_extension.dart';
 import 'package:dokan_demo/utils/extensions/responsive_extension.dart';
 import 'package:dokan_demo/utils/widgets/primary_button.dart';
@@ -22,6 +24,7 @@ class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  final authController = Get.find<AuthController>();
   @override
   void dispose() {
     emailController.dispose();
@@ -72,11 +75,17 @@ class _SignInScreenState extends State<SignInScreen> {
                   },
                   prefixIconPath: Assets.icons.password,
                   hintText: "Password",
+                  obsecureText: true,
                 ).paddingOnly(bottom: 15.pt),
                 const ForgotPassword(),
                 PrimaryButton(
                   onTap: () {
-                    if (formKey.currentState?.validate() ?? false) {}
+                    if (formKey.currentState?.validate() ?? false) {
+                      authController.signIn(AuthPayload(
+                        username: emailController.text,
+                        password: passwordController.text,
+                      ));
+                    }
                   },
                   title: "Login",
                 ).paddingOnly(bottom: 30.pt),

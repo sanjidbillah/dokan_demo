@@ -1,7 +1,7 @@
+import 'package:dokan_demo/gen/assets.gen.dart';
 import 'package:dokan_demo/utils/extensions/responsive_extension.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +13,7 @@ class PrimaryTextField extends StatefulWidget {
   final String? prefixIconPath;
   final String hintText;
   final String? Function(String?)? validator;
+  final bool obsecureText;
   const PrimaryTextField({
     super.key,
     this.controller,
@@ -20,6 +21,7 @@ class PrimaryTextField extends StatefulWidget {
     this.prefixIconPath,
     required this.hintText,
     this.validator,
+    this.obsecureText = false,
   });
 
   @override
@@ -27,6 +29,7 @@ class PrimaryTextField extends StatefulWidget {
 }
 
 class _PrimaryTextFieldState extends State<PrimaryTextField> {
+  final ValueNotifier obsecureText = ValueNotifier<bool>(true);
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -49,34 +52,53 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
             ],
           ),
         ),
-        TextFormField(
-          autocorrect: false,
-          validator: widget.validator,
-          controller: widget.controller,
-          decoration: InputDecoration(
-            prefixIcon: widget.prefixIconPath == null
-                ? null
-                : SvgPicture.asset(
-                    widget.prefixIconPath!,
-                    height: 20.pt,
-                    width: 20.pt,
-                    fit: BoxFit.fill,
-                  ).paddingAll(15),
-            suffixIcon: widget.suffixIconPath == null
-                ? null
-                : SvgPicture.asset(
-                    widget.suffixIconPath!,
-                    height: 20.pt,
-                    width: 20.pt,
-                    fit: BoxFit.fill,
-                  ).paddingAll(15),
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(
-              vertical: 17.5.pt,
-            ),
-            hintText: widget.hintText,
-          ),
-        ),
+        ValueListenableBuilder(
+            valueListenable: obsecureText,
+            builder: (_, value, __) {
+              return TextFormField(
+                autocorrect: false,
+                validator: widget.validator,
+                obscureText: value,
+                controller: widget.controller,
+                decoration: InputDecoration(
+                  prefixIcon: widget.prefixIconPath == null
+                      ? null
+                      : SvgPicture.asset(
+                          widget.prefixIconPath!,
+                          height: 20.pt,
+                          width: 20.pt,
+                          fit: BoxFit.fill,
+                        ).paddingAll(15),
+                  suffixIcon: widget.obsecureText
+                      ? InkWell(
+                          onTap: () {
+                            obsecureText.value = !obsecureText.value;
+                          },
+                          child: SvgPicture.asset(
+                            value
+                                ? Assets.icons.eyeClose
+                                : Assets.icons.eyeOpen,
+                            height: 20.pt,
+                            width: 20.pt,
+                            fit: BoxFit.fill,
+                          ).paddingAll(15),
+                        )
+                      : widget.suffixIconPath == null
+                          ? null
+                          : SvgPicture.asset(
+                              widget.suffixIconPath!,
+                              height: 20.pt,
+                              width: 20.pt,
+                              fit: BoxFit.fill,
+                            ).paddingAll(15),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 17.5.pt,
+                  ),
+                  hintText: widget.hintText,
+                ),
+              );
+            })
       ],
     );
   }

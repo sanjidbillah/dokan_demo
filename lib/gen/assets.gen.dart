@@ -30,6 +30,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/email.svg
   String get email => 'assets/icons/email.svg';
 
+  /// File path: assets/icons/eye_close.svg
+  String get eyeClose => 'assets/icons/eye_close.svg';
+
+  /// File path: assets/icons/eye_open.svg
+  String get eyeOpen => 'assets/icons/eye_open.svg';
+
   /// File path: assets/icons/facebook.png
   AssetGenImage get facebook =>
       const AssetGenImage('assets/icons/facebook.png');
@@ -69,6 +75,8 @@ class $AssetsIconsGen {
         cart,
         category,
         email,
+        eyeClose,
+        eyeOpen,
         facebook,
         favourite,
         filter,

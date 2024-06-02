@@ -19,39 +19,59 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
         child: Center(
-          child: Column(
-            children: [
-              const ImageUploadSection().paddingOnly(bottom: 40),
-              PrimaryTextField(
-                prefixIconPath: Assets.icons.accountInput,
-                hintText: "Name",
-              ).paddingOnly(bottom: 20.pt),
-              PrimaryTextField(
-                prefixIconPath: Assets.icons.email,
-                hintText: "Email",
-              ).paddingOnly(bottom: 20.pt),
-              PrimaryTextField(
-                prefixIconPath: Assets.icons.password,
-                hintText: "Password",
-              ).paddingOnly(bottom: 20.pt),
-              PrimaryTextField(
-                prefixIconPath: Assets.icons.password,
-                hintText: "Confirm Password",
-              ).paddingOnly(bottom: 30.pt),
-              const PrimaryButton(title: "Sign Up").paddingOnly(bottom: 30.pt),
-              const SocialSection(),
-              const AlreadyHaveAccount()
-            ],
-          ).pAll,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                const ImageUploadSection().paddingOnly(bottom: 40),
+                PrimaryTextField(
+                  prefixIconPath: Assets.icons.accountInput,
+                  hintText: "Name",
+                ).paddingOnly(bottom: 20.pt),
+                PrimaryTextField(
+                  prefixIconPath: Assets.icons.email,
+                  hintText: "Email",
+                ).paddingOnly(bottom: 20.pt),
+                PrimaryTextField(
+                  prefixIconPath: Assets.icons.password,
+                  hintText: "Password",
+                  obsecureText: true,
+                ).paddingOnly(bottom: 20.pt),
+                PrimaryTextField(
+                  prefixIconPath: Assets.icons.password,
+                  hintText: "Confirm Password",
+                  obsecureText: true,
+                ).paddingOnly(bottom: 30.pt),
+                const PrimaryButton(title: "Sign Up")
+                    .paddingOnly(bottom: 30.pt),
+                const SocialSection(),
+                const AlreadyHaveAccount()
+              ],
+            ).pAll,
+          ),
         ),
       )),
     );
