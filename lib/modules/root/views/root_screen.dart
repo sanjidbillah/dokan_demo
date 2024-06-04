@@ -15,6 +15,7 @@ class RootScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBody: true,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(top: 70),
