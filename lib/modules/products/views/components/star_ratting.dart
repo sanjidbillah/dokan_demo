@@ -7,12 +7,12 @@ class StarRating extends StatelessWidget {
   final Color emptyStarColor;
 
   const StarRating({
-    Key? key,
+    super.key,
     required this.averageRating,
     this.starSize = 14,
     this.filledStarColor = const Color(0xFFF5A623),
     this.emptyStarColor = const Color(0xFFD3D8E5),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

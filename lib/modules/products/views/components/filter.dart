@@ -2,9 +2,7 @@ import 'package:dokan_demo/gen/assets.gen.dart';
 import 'package:dokan_demo/modules/products/controllers/product_controller.dart';
 import 'package:dokan_demo/modules/products/data/models/filter_model.dart.dart';
 import 'package:dokan_demo/utils/widgets/primary_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -98,6 +96,7 @@ class Filter extends StatelessWidget {
                               child: PrimaryButton(
                                 backgroundColor: Colors.white,
                                 title: "Cancel",
+                                haveBorder: true,
                                 titleColor: const Color(0xFF818995),
                                 onTap: () {
                                   Get.back();

@@ -2,7 +2,6 @@ import 'package:dokan_demo/gen/assets.gen.dart';
 import 'package:dokan_demo/modules/auth/controllers/auth_controller.dart';
 import 'package:dokan_demo/modules/auth/data/models/auth_payload.dart';
 import 'package:dokan_demo/modules/auth/views/components/social_section.dart';
-import 'package:dokan_demo/utils/extensions/is_valid_username.dart';
 import 'package:dokan_demo/utils/extensions/padding_extension.dart';
 import 'package:dokan_demo/utils/extensions/responsive_extension.dart';
 import 'package:dokan_demo/utils/widgets/primary_button.dart';
@@ -52,12 +51,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 PrimaryTextField(
                   controller: _nameController,
                   prefixIconPath: Assets.icons.accountInput,
-                  hintText: "Username",
+                  hintText: "Name",
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter name';
-                    } else if (!value.isValidUsername) {
-                      return 'Enter valid username';
                     }
                     return null;
                   },

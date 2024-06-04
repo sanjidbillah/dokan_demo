@@ -88,8 +88,8 @@ class _ImageUploadSectionState extends State<ImageUploadSection> {
                 onPressed: () async {
                   Get.back();
                   final ImagePicker picker = ImagePicker();
-                  final XFile? image =
-                      await picker.pickImage(source: ImageSource.camera);
+
+                  await picker.pickImage(source: ImageSource.camera);
                 },
                 child: Row(
                   children: [
@@ -102,8 +102,8 @@ class _ImageUploadSectionState extends State<ImageUploadSection> {
                 onPressed: () async {
                   Get.back();
                   final ImagePicker picker = ImagePicker();
-                  final XFile? image =
-                      await picker.pickImage(source: ImageSource.gallery);
+
+                  await picker.pickImage(source: ImageSource.gallery);
                 },
                 child: Row(
                   children: [

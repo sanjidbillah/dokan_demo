@@ -1,4 +1,7 @@
+import 'package:dokan_demo/modules/auth/controllers/auth_controller.dart';
+import 'package:dokan_demo/utils/extensions/padding_extension.dart';
 import 'package:dokan_demo/utils/extensions/responsive_extension.dart';
+import 'package:dokan_demo/utils/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -53,12 +56,19 @@ class ProfileWidget extends StatelessWidget {
                   _profileController.profileInfo?.value?.name ??
                   "N/A",
               style: Get.theme.primaryTextTheme.headlineLarge,
+            ).marginOnly(bottom: 20),
+            const ProfileMenu().marginOnly(bottom: 20),
+            PrimaryButton(
+              title: "Logout",
+              onTap: () {
+                final AuthController authController = Get.find();
+                authController.logOut();
+              },
             ),
-            const ProfileMenu(),
             const SizedBox(
               height: 100,
             )
           ],
-        ));
+        ).pAll);
   }
 }

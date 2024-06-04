@@ -55,7 +55,7 @@ class _LeftIconExpandedState extends State<LeftIconExpanded> {
                   color: const Color.fromRGBO(96, 107, 113, 1),
                 )
               ],
-            ),
+            ).marginSymmetric(vertical: 5),
             if (widget.expandedWidget != null && isOpen) widget.expandedWidget!,
             if (widget.haveDivider)
               const Divider(
