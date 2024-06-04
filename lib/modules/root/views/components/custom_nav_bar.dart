@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../../gen/assets.gen.dart';
-import '../../../utils/themes/theme_controller.dart';
+import '../../../../gen/assets.gen.dart';
+import '../../../../utils/themes/theme_controller.dart';
 
 class _CurvedPainter extends CustomPainter {
   @override

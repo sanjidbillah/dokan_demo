@@ -120,9 +120,9 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.symmetric(
                         vertical: widget.height != null && widget.label != null
-                            ? 0.0
+                            ? 13.5.pt
                             : 17.5.pt,
-                        horizontal: widget.suffixIconPath == null ? 20.0 : 0.0,
+                        horizontal: widget.prefixIconPath == null ? 20.0 : 0.0,
                       ),
                       hintText: widget.hintText,
                     ),

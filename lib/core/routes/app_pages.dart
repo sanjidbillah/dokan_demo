@@ -1,7 +1,7 @@
 import 'package:dokan_demo/checkpoint.dart';
 import 'package:dokan_demo/modules/auth/views/sign_in/sign_in_screen.dart';
 import 'package:dokan_demo/modules/auth/views/sign_up/sign_up_screen.dart';
-import 'package:dokan_demo/modules/root/root_screen.dart';
+import 'package:dokan_demo/modules/root/views/root_screen.dart';
 import 'package:get/route_manager.dart';
 
 import '../../modules/root/bindings/root_bindings.dart';

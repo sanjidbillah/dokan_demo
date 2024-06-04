@@ -38,55 +38,69 @@ class Filter extends StatelessWidget {
                         Wrap(
                           children: [
                             Obx(() => Column(
-                                  children:
-                                      productController.filters.map((element) {
-                                    final isActive = element.filterState ==
-                                        productController.currentFilter.value;
-                                    return InkWell(
-                                      onTap: () {
-                                        if (productController
-                                                .currentFilter.value !=
-                                            element.filterState) {
-                                          productController.currentFilter
-                                              .value = element.filterState;
-                                        } else {
-                                          productController.currentFilter
-                                              .value = FilterState.none;
-                                        }
-                                      },
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            height: 20,
-                                            width: 20,
-                                            decoration: BoxDecoration(
-                                              color: isActive
-                                                  ? const Color(0xFFFF708A)
-                                                  : Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(3),
-                                              border: isActive
-                                                  ? null
-                                                  : Border.all(
-                                                      color: const Color(
-                                                          0xFFFF708A),
-                                                    ),
-                                            ),
-                                            child: isActive
-                                                ? const Center(
-                                                    child: Icon(
-                                                      Icons.check,
-                                                      color: Colors.white,
-                                                      size: 13,
-                                                    ),
-                                                  )
-                                                : null,
-                                          ).marginOnly(right: 8),
-                                          Text(element.name)
-                                        ],
-                                      ).marginOnly(bottom: 8),
-                                    );
-                                  }).toList(),
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Filter",
+                                      style: Get
+                                          .theme.primaryTextTheme.headlineLarge
+                                          ?.copyWith(
+                                        fontSize: 16,
+                                      ),
+                                    ).marginOnly(bottom: 10),
+                                    Column(
+                                      children: productController.filters
+                                          .map((element) {
+                                        final isActive = element.filterState ==
+                                            productController
+                                                .currentFilter.value;
+                                        return InkWell(
+                                          onTap: () {
+                                            if (productController
+                                                    .currentFilter.value !=
+                                                element.filterState) {
+                                              productController.currentFilter
+                                                  .value = element.filterState;
+                                            } else {
+                                              productController.currentFilter
+                                                  .value = FilterState.none;
+                                            }
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                height: 20,
+                                                width: 20,
+                                                decoration: BoxDecoration(
+                                                  color: isActive
+                                                      ? const Color(0xFFFF708A)
+                                                      : Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(3),
+                                                  border: isActive
+                                                      ? null
+                                                      : Border.all(
+                                                          color: const Color(
+                                                              0xFFFF708A),
+                                                        ),
+                                                ),
+                                                child: isActive
+                                                    ? const Center(
+                                                        child: Icon(
+                                                          Icons.check,
+                                                          color: Colors.white,
+                                                          size: 13,
+                                                        ),
+                                                      )
+                                                    : null,
+                                              ).marginOnly(right: 8),
+                                              Text(element.name)
+                                            ],
+                                          ).marginOnly(bottom: 8),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ],
                                 ))
                           ],
                         ).marginOnly(bottom: 40),
@@ -168,7 +182,7 @@ class Filter extends StatelessWidget {
                 Icon(
                   Icons.keyboard_arrow_down_sharp,
                   color: Get.theme.dropdownMenuTheme.textStyle?.color,
-                ),
+                ).marginOnly(right: 10),
                 SvgPicture.asset(Assets.icons.sort),
               ],
             )

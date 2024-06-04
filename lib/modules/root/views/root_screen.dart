@@ -3,7 +3,7 @@ import 'package:dokan_demo/modules/root/controllers/root_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../products/views/product_list_screen.dart';
+import '../../products/views/product_list_screen.dart';
 import 'components/custom_nav_bar.dart';
 
 class RootScreen extends StatelessWidget {
