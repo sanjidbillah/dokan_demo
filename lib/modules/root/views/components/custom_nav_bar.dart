@@ -100,34 +100,6 @@ class CustomCurvedNavigationBar extends StatelessWidget {
                         ),
                       ),
 
-                      Center(
-                        heightFactor: 0.30,
-                        child: FloatingActionButton(
-                          shape: const CircleBorder(),
-                          onPressed: () {},
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Color.fromRGBO(184, 45, 72, 0.15),
-                                    offset: Offset(0, 12),
-                                    blurRadius: 28,
-                                    spreadRadius: 0)
-                              ],
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color(0xFFFF679B),
-                                  Color(0xFFFF7B51),
-                                ],
-                              ),
-                            ),
-                            child: Center(
-                                child: SvgPicture.asset(Assets.icons.search)),
-                          ),
-                        ),
-                      ),
-
                       //? icons
 
                       SizedBox(
