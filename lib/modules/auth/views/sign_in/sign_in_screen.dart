@@ -1,4 +1,3 @@
-import 'package:dokan_demo/core/services/dio_service.dart';
 import 'package:dokan_demo/gen/assets.gen.dart';
 import 'package:dokan_demo/modules/auth/controllers/auth_controller.dart';
 import 'package:dokan_demo/modules/auth/data/models/auth_payload.dart';

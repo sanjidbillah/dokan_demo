@@ -1,10 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dokan_demo/core/services/shared_pref_service.dart';
-import 'package:dokan_demo/utils/constants/keys.dart';
 import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../utils/constants/app_env.dart';
 

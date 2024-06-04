@@ -2,14 +2,9 @@ import 'package:dokan_demo/gen/assets.gen.dart';
 import 'package:dokan_demo/modules/auth/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ud_design/ud_design.dart';
 
-void runAfterFrame(Function callback) {
-  // Adding a post-frame callback to the widget binding instance
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    // Calling the provided callback at the end of the frame
-    callback();
-  });
-}
+import 'utils/run_after_frame.dart';
 
 class CheckPoint extends StatefulWidget {
   const CheckPoint({super.key});
@@ -20,12 +15,16 @@ class CheckPoint extends StatefulWidget {
 
 class _CheckPointState extends State<CheckPoint> {
   final AuthController _authController = Get.find<AuthController>();
+  initilization() {
+    runAfterFrame(() async {
+      UdDesign.init(context);
+      _authController.checkLoginStatus();
+    }, delay: true);
+  }
 
   @override
   void initState() {
-    runAfterFrame(() {
-      _authController.checkLoginStatus();
-    });
+    initilization();
     super.initState();
   }
 

@@ -28,11 +28,27 @@ class ThemeController {
   final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     useMaterial3: true,
+    checkboxTheme: CheckboxThemeData(
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3))),
+      checkColor: MaterialStateProperty.all<Color>(Colors.white),
+      fillColor: MaterialStateProperty.all<Color>(
+        const Color(0xFFFF708A),
+      ),
+      side: const BorderSide(color: Color(0xFFFF708A), width: 0.7),
+    ),
+    dropdownMenuTheme: const DropdownMenuThemeData(
+      textStyle: TextStyle(
+        color: Color(0xFF818995),
+        fontSize: 15,
+        fontWeight: FontWeight.w400,
+      ),
+    ),
     primaryTextTheme: const TextTheme(
       headlineSmall: TextStyle(
         color: Color(0xFF000000),
         fontSize: 13,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
       ),
       headlineMedium: TextStyle(
         color: Color(0xFF383C40),
@@ -43,6 +59,13 @@ class ThemeController {
         color: Colors.black,
         fontSize: 20,
         fontWeight: FontWeight.w700,
+      ),
+    ),
+    appBarTheme: const AppBarTheme(
+      titleTextStyle: TextStyle(
+        color: Color(0xFF222455),
+        fontWeight: FontWeight.bold,
+        fontSize: 22,
       ),
     ),
     inputDecorationTheme: const InputDecorationTheme(

@@ -110,8 +110,12 @@ class $AssetsImagesGen {
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
+  /// File path: assets/images/no_image.png
+  AssetGenImage get noImage =>
+      const AssetGenImage('assets/images/no_image.png');
+
   /// List of all assets
-  List<dynamic> get values => [brand, error, logo];
+  List<dynamic> get values => [brand, error, logo, noImage];
 }
 
 class $AssetsLottieGen {
