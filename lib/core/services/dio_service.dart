@@ -1,7 +1,11 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dokan_demo/core/routes/app_routes.dart';
+import 'package:dokan_demo/core/services/shared_pref_service.dart';
+import 'package:dokan_demo/utils/constants/keys.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/route_manager.dart';
 
 import '../../utils/constants/app_env.dart';
 
@@ -34,8 +38,20 @@ class DioService {
         )
       ..interceptors.add(InterceptorsWrapper(
         // Add interceptors for handling requests, errors, and responses
-        onRequest: (RequestOptions options, handler) {
+        onRequest: (RequestOptions options, handler) async {
           // Function to handle request
+
+          final token = await SharedPreferencesService.instance
+              .getString(ProjectKeys.authKey);
+          if (token != null) {
+            if (isTokenExpired(token)) {
+              Get.toNamed(Routes.checkpoint);
+            } else {
+              options.headers = {
+                'Authorization': 'Bearer $token',
+              };
+            }
+          }
           return handler.next(options); // Pass request to next handler
         },
         onError: (DioException error, handler) async {
@@ -80,7 +96,7 @@ class DioService {
     }
   }
 
-  bool isExpired(String token) {
+  bool isTokenExpired(String token) {
     final expirationDate = _getExpirationDate(token);
     if (expirationDate == null) {
       return false;

@@ -81,12 +81,18 @@ class AuthController extends BaseController implements IAuthService {
     if (token == null) {
       Get.offAllNamed(Routes.signIn);
     } else {
-      final isExpired = DioService.instance.isExpired(token);
+      final isExpired = DioService.instance.isTokenExpired(token);
       if (isExpired) {
         Get.offAllNamed(Routes.signIn);
       } else {
         Get.offAllNamed(Routes.root);
       }
     }
+  }
+
+  @override
+  Future<void> logOut() async {
+    await SharedPreferencesService.instance.clear();
+    Get.offAllNamed(Routes.checkpoint);
   }
 }

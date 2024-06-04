@@ -3,8 +3,10 @@ import 'package:dokan_demo/utils/extensions/responsive_extension.dart';
 import 'package:dokan_demo/utils/themes/theme_controller.dart';
 import 'package:dokan_demo/utils/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:ud_design/ud_design.dart';
+import '../../../gen/assets.gen.dart';
 import 'components/filter.dart';
 import 'components/product_list.dart';
 
@@ -14,12 +16,24 @@ class ProductListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PrimaryAppbar(name: "Product List"),
+      appBar: PrimaryAppbar(
+        name: "Product List",
+        actinWidget: [
+          Padding(
+            padding: EdgeInsets.only(right: ThemeController.defaultPadding),
+            child: SvgPicture.asset(
+              Assets.icons.search,
+              // ignore: deprecated_member_use
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-            Filter(),
+            const Filter(),
             ProductList(),
             SizedBox(
               height: 120.pt,

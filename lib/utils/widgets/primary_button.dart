@@ -7,12 +7,15 @@ class PrimaryButton extends StatefulWidget {
   final void Function()? onTap;
   final Color? backgroundColor;
   final Color? titleColor;
-  const PrimaryButton(
-      {super.key,
-      required this.title,
-      this.onTap,
-      this.backgroundColor,
-      this.titleColor});
+  final bool haveBorder;
+  const PrimaryButton({
+    super.key,
+    required this.title,
+    this.onTap,
+    this.backgroundColor,
+    this.titleColor,
+    this.haveBorder = false,
+  });
 
   @override
   State<PrimaryButton> createState() => _PrimaryButtonState();
@@ -26,11 +29,16 @@ class _PrimaryButtonState extends State<PrimaryButton> {
       child: Container(
         height: ThemeController.defaultFieldHeight,
         decoration: BoxDecoration(
-          color: widget.backgroundColor ?? Get.theme.primaryColor,
-          borderRadius: BorderRadius.circular(
-            ThemeController.defaultFieldRadius,
-          ),
-        ),
+            color: widget.backgroundColor ?? Get.theme.primaryColor,
+            borderRadius: BorderRadius.circular(
+              ThemeController.defaultFieldRadius,
+            ),
+            border: widget.haveBorder
+                ? Border.all(
+                    color: const Color.fromRGBO(151, 151, 151, 0.67),
+                    width: 0.5,
+                  )
+                : null),
         child: Center(
           child: Text(
             widget.title,

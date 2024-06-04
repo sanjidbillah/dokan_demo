@@ -22,7 +22,7 @@ final List<GetPage> pages = [
   ),
   GetPage(
     name: Routes.root,
-    page: () => const RootScreen(),
+    page: () => RootScreen(),
     binding: RootBindings(),
   ),
 ];

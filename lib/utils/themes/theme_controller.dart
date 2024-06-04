@@ -37,6 +37,7 @@ class ThemeController {
       ),
       side: const BorderSide(color: Color(0xFFFF708A), width: 0.7),
     ),
+    dividerColor: const Color.fromRGBO(160, 169, 189, 0.31),
     dropdownMenuTheme: const DropdownMenuThemeData(
       textStyle: TextStyle(
         color: Color(0xFF818995),

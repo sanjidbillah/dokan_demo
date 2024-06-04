@@ -3,5 +3,5 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 
 class RootController extends BaseController {
-  RxInt currentNavIndex = 0.obs;
+  RxInt currentNavIndex = 2.obs;
 }

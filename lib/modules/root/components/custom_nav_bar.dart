@@ -1,4 +1,5 @@
 import 'package:dokan_demo/modules/root/controllers/root_controller.dart';
+import 'package:dokan_demo/utils/extensions/responsive_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -80,128 +81,135 @@ class CustomCurvedNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return Obx(() => Stack(
-          children: [
-            Positioned(
-              bottom: -1, // Adjusted to remove the tiny gap
-              left: 0,
-              child: SizedBox(
-                width: size.width,
-                height: 71, // Adjusted to remove the tiny gap
-                child: Stack(
-                  children: [
-                    CustomPaint(
-                      painter: _CurvedPainter(),
-                      size: Size(
-                        size.width,
-                        80,
+    return Obx(() => SizedBox(
+          height: 90.pt,
+          child: Stack(
+            children: [
+              Positioned(
+                bottom: -1,
+                left: 0,
+                child: SizedBox(
+                  width: size.width,
+                  height: 71, // Adjusted to remove the tiny gap
+                  child: Stack(
+                    children: [
+                      CustomPaint(
+                        painter: _CurvedPainter(),
+                        size: Size(
+                          size.width,
+                          80,
+                        ),
                       ),
-                    ),
 
-                    Center(
-                      heightFactor: 0.30,
-                      child: FloatingActionButton(
-                        shape: const CircleBorder(),
-                        onPressed: () {},
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromRGBO(184, 45, 72, 0.15),
-                                  offset: Offset(0, 12),
-                                  blurRadius: 28,
-                                  spreadRadius: 0)
-                            ],
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFFFF679B),
-                                Color(0xFFFF7B51),
+                      Center(
+                        heightFactor: 0.30,
+                        child: FloatingActionButton(
+                          shape: const CircleBorder(),
+                          onPressed: () {},
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromRGBO(184, 45, 72, 0.15),
+                                    offset: Offset(0, 12),
+                                    blurRadius: 28,
+                                    spreadRadius: 0)
                               ],
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0xFFFF679B),
+                                  Color(0xFFFF7B51),
+                                ],
+                              ),
                             ),
+                            child: Center(
+                                child: SvgPicture.asset(Assets.icons.search)),
                           ),
-                          child: Center(
-                              child: SvgPicture.asset(Assets.icons.search)),
                         ),
                       ),
-                    ),
 
-                    //? icons
+                      //? icons
 
-                    SizedBox(
-                      height: 90,
-                      // width: size.width,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: ThemeController.defaultPadding),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            IconButton(
-                              icon: SvgPicture.asset(
-                                Assets.icons.home,
-                                // ignore: deprecated_member_use
-                                color: rootController.currentNavIndex.value == 0
-                                    ? Get.theme.bottomNavigationBarTheme
-                                        .selectedItemColor
-                                    : null,
+                      SizedBox(
+                        height: 90,
+                        // width: size.width,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: ThemeController.defaultPadding),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(
+                                icon: SvgPicture.asset(
+                                  Assets.icons.home,
+                                  // ignore: deprecated_member_use
+                                  color:
+                                      rootController.currentNavIndex.value == 0
+                                          ? Get.theme.bottomNavigationBarTheme
+                                              .selectedItemColor
+                                          : null,
+                                ),
+                                onPressed: () {
+                                  rootController.currentNavIndex.value = 0;
+                                },
                               ),
-                              onPressed: () {
-                                rootController.currentNavIndex.value = 0;
-                              },
-                            ),
-                            IconButton(
-                              icon: SvgPicture.asset(
-                                Assets.icons.category,
+                              IconButton(
+                                icon: SvgPicture.asset(
+                                  Assets.icons.category,
 
-                                // ignore: deprecated_member_use
-                                color: rootController.currentNavIndex.value == 1
-                                    ? Get.theme.bottomNavigationBarTheme
-                                        .selectedItemColor
-                                    : null,
+                                  // ignore: deprecated_member_use
+                                  color:
+                                      rootController.currentNavIndex.value == 1
+                                          ? Get.theme.bottomNavigationBarTheme
+                                              .selectedItemColor
+                                          : null,
+                                ),
+                                onPressed: () {
+                                  rootController.currentNavIndex.value = 1;
+                                },
                               ),
-                              onPressed: () {
-                                rootController.currentNavIndex.value = 1;
-                              },
-                            ),
-                            SizedBox(
-                              width: size.width * 0.20,
-                            ),
-                            IconButton(
-                              icon: SvgPicture.asset(
-                                Assets.icons.cart,
-                                // ignore: deprecated_member_use
-                                color: rootController.currentNavIndex.value == 3
-                                    ? Get.theme.bottomNavigationBarTheme
-                                        .selectedItemColor
-                                    : null,
+                              SizedBox(
+                                width: size.width * 0.20,
                               ),
-                              onPressed: () {
-                                rootController.currentNavIndex.value = 3;
-                              },
-                            ),
-                            IconButton(
-                              icon: SvgPicture.asset(
-                                Assets.icons.personNav,
-                                // ignore: deprecated_member_use
-                                color: rootController.currentNavIndex.value == 4
-                                    ? Get.theme.bottomNavigationBarTheme
-                                        .selectedItemColor
-                                    : null,
+                              IconButton(
+                                icon: SvgPicture.asset(
+                                  Assets.icons.cart,
+                                  // ignore: deprecated_member_use
+                                  color:
+                                      rootController.currentNavIndex.value == 3
+                                          ? Get.theme.bottomNavigationBarTheme
+                                              .selectedItemColor
+                                          : null,
+                                ),
+                                onPressed: () {
+                                  rootController.currentNavIndex.value = 3;
+                                },
                               ),
-                              onPressed: () {
-                                rootController.currentNavIndex.value = 4;
-                              },
-                            ),
-                          ],
+                              IconButton(
+                                icon: SvgPicture.asset(
+                                  Assets.icons.personNav,
+                                  // ignore: deprecated_member_use
+                                  color:
+                                      rootController.currentNavIndex.value == 4
+                                          ? Get.theme.bottomNavigationBarTheme
+                                              .selectedItemColor
+                                          : null,
+                                ),
+                                onPressed: () {
+                                  rootController.currentNavIndex.value = 4;
+                                },
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ));
   }
 }
